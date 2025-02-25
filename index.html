@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Hover Status</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: red;
+      animation: blink 1s infinite;
+      opacity: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    .container:hover .dot {
+      background-color: green;
+      opacity: 1;
+    }
+
+    img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://png.pngtree.com/png-vector/20230531/ourmid/pngtree-cute-drawing-of-a-duck-drawing-vector-png-image_6786138.png" alt="Sample Image" id="hoverImage">
+    <div class="status">
+      <div class="dot"></div>
+      <span id="statusText">Not Running</span>
+    </div>
+  </div>
+
+  <script>
+    const hoverImage = document.getElementById('hoverImage');
+    const statusText = document.getElementById('statusText');
+
+    hoverImage.addEventListener('mouseover', () => {
+      statusText.textContent = 'Running';
+    });
+
+    hoverImage.addEventListener('mouseout', () => {
+      statusText.textContent = 'Not Running';
+    });
+  </script>
+</body>
+</html>
